@@ -48,6 +48,7 @@
 /* Include Files */
 
 #include "HL_sys_common.h"
+#include "HL_gio.h"
 
 /* USER CODE BEGIN (1) */
 /* USER CODE END */
@@ -61,22 +62,46 @@
 */
 
 /* USER CODE BEGIN (2) */
+#define DELAY_VALUE 10000000
+
+
 /* USER CODE END */
 
 uint8	emacAddress[6U] = 	{0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU};
 uint32 	emacPhyAddress	=	1U;
 
-int main(void)
+void main(void)
 {
 /* USER CODE BEGIN (3) */
 
+    uint32 test_var_u32 = 0;
+    int i;
+
+    gioInit();
+    gioPORTB->DIR  = (0x01 << 6);  //configure GIOB[6] as output
+    gioPORTB->DIR |= (0x01 << 7);  //configure GIOB[6] as output
+
+    gioSetBit(gioPORTB, 6, 1);     //!< LED B6(Next to the RJ45 on hercules)
+    gioSetBit(gioPORTB, 7, 0);     //!< LED B7(Next to the RJ45 on hercules)
 
 
+    //!< MAIN CODE ------------------------------------------------------------
+    while(1)
+    {
+
+        gioToggleBit(gioPORTB, 6);
+        gioToggleBit(gioPORTB, 7);
+        for (i = 0; i < DELAY_VALUE; i++);
+        gioToggleBit(gioPORTB, 6);
+        gioToggleBit(gioPORTB, 7);
+        for (i = 0; i < DELAY_VALUE; i++);
 
 
+        test_var_u32++;
+    }
+    //!< MAIN CODE ------------------------------------------------------------
 /* USER CODE END */
 
-    return 0;
 }
 
 
