@@ -62,13 +62,15 @@
 */
 
 /* USER CODE BEGIN (2) */
-#define DELAY_VALUE 10000000
+#define DELAY_VALUE     (10000000)
+#define PORT_BOOT_LED   (gioPORTB)
+#define PIN_BOOT_LED    (6U)
 
 
 /* USER CODE END */
 
-uint8	emacAddress[6U] = 	{0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU};
-uint32 	emacPhyAddress	=	1U;
+uint8   emacAddress[6U] =   {0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU};
+uint32  emacPhyAddress  =   1U;
 
 void main(void)
 {
@@ -78,22 +80,16 @@ void main(void)
     int i;
 
     gioInit();
-    gioPORTB->DIR  = (0x01 << 6);  //configure GIOB[6] as output
-    gioPORTB->DIR |= (0x01 << 7);  //configure GIOB[6] as output
+    PORT_BOOT_LED->DIR |= (0x01 << PIN_BOOT_LED);  //configure GIOB[7] as output
 
-    gioSetBit(gioPORTB, 6, 1);     //!< LED B6(Next to the RJ45 on hercules)
-    gioSetBit(gioPORTB, 7, 0);     //!< LED B7(Next to the RJ45 on hercules)
+    gioSetBit(PORT_BOOT_LED, PIN_BOOT_LED, 0);     //!< LED B7(Next to the RJ45 on hercules)
 
 
     //!< MAIN CODE ------------------------------------------------------------
     while(1)
     {
 
-        gioToggleBit(gioPORTB, 6);
-        gioToggleBit(gioPORTB, 7);
-        for (i = 0; i < DELAY_VALUE; i++);
-        gioToggleBit(gioPORTB, 6);
-        gioToggleBit(gioPORTB, 7);
+        gioToggleBit(PORT_BOOT_LED, PIN_BOOT_LED);
         for (i = 0; i < DELAY_VALUE; i++);
 
 

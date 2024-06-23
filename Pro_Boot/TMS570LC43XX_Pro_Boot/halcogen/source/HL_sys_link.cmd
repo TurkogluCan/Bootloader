@@ -82,9 +82,9 @@ SECTIONS
     .const  align(32) : {} > FLASH0 | FLASH1
     .cinit  align(32) : {} > FLASH0 | FLASH1
     .pinit  align(32) : {} > FLASH0 | FLASH1
-    .bss     : {} > RAM
-    .data    : {} > RAM
-    .sysmem  : {} > RAM
+    .bss              : {} > RAM
+    .data             : {} > RAM
+    .sysmem           : {} > RAM
 	
 
 /* USER CODE BEGIN (6) */
