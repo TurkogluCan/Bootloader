@@ -77,7 +77,7 @@ SECTIONS
 {
 /* USER CODE BEGIN (5) */
 /* USER CODE END */
-    .intvecs : {} > VECTORS
+    .intvecs : {} > FLASH1
     .text   align(32) : {} > FLASH0 | FLASH1
     .const  align(32) : {} > FLASH0 | FLASH1
     .cinit  align(32) : {} > FLASH0 | FLASH1
