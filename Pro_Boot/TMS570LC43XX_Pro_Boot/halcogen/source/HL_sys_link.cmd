@@ -56,11 +56,11 @@ MEMORY
 {
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
-    VECTORS (X)  : origin=0x00000000 length=0x00000020
-    FLASH0  (RX) : origin=0x00000020 length=0x001FFFE0
-    FLASH1  (RX) : origin=0x00200000 length=0x00200000
-    STACKS  (RW) : origin=0x08000000 length=0x00001500
-    RAM     (RW) : origin=0x08001500 length=0x0007EB00
+    VECTORS (RX)  : origin=0x00000000 length=0x001FFFE0
+    FLASH1  (RX)  : origin=0x00200000 length=0x00200000
+    STACKS  (RW)  : origin=0x08000000 length=0x00001500
+    RAMDATA (RW)  : origin=0x08001500 length=0x0003F580
+    RAMPROG (RX)  : origin=0x08040A80 length=0x0003F570
 
 /* USER CODE BEGIN (3) */
 /* USER CODE END */
@@ -77,14 +77,14 @@ SECTIONS
 {
 /* USER CODE BEGIN (5) */
 /* USER CODE END */
-    .intvecs : {} > FLASH1
-    .text   align(32) : {} > FLASH0 | FLASH1
-    .const  align(32) : {} > FLASH0 | FLASH1
-    .cinit  align(32) : {} > FLASH0 | FLASH1
-    .pinit  align(32) : {} > FLASH0 | FLASH1
-    .bss              : {} > RAM
-    .data             : {} > RAM
-    .sysmem           : {} > RAM
+    .intvecs : {} > VECTORS
+    .text   align(32) : {} > RAMPROG
+    .const  align(32) : {} > RAMPROG
+    .cinit  align(32) : {} > RAMPROG
+    .pinit  align(32) : {} > RAMPROG
+    .bss              : {} > RAMDATA
+    .data             : {} > RAMDATA
+    .sysmem           : {} > RAMDATA
 	
 
 /* USER CODE BEGIN (6) */

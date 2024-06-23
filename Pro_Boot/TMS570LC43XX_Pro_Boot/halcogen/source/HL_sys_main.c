@@ -48,9 +48,9 @@
 /* Include Files */
 
 #include "HL_sys_common.h"
-#include "HL_gio.h"
 
 /* USER CODE BEGIN (1) */
+#include "HL_gio.h"
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -69,8 +69,8 @@
 
 /* USER CODE END */
 
-uint8   emacAddress[6U] =   {0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU};
-uint32  emacPhyAddress  =   1U;
+uint8	emacAddress[6U] = 	{0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU, 0xFFU};
+uint32 	emacPhyAddress	=	1U;
 
 void main(void)
 {
